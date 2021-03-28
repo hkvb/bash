@@ -1,6 +1,6 @@
 # `hkvb/bash` Image Library
 
-The versioned repository of the bash image library.
+The bash image library.
 
 ## hkvb/bash.api
 
