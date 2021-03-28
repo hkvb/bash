@@ -19,6 +19,6 @@ Base image for bash implemented REST API clients.
 Base image providing core structure and containing executionplane logging library.  
 Requires a documentation update.
 
-## Versions
+## Version
 
 * 5.0.18  
