@@ -1,0 +1,29 @@
+
+This is an image of the vcwc container ecosystem.
+See vcwebio/vcwc.docs.overview for more information on the vcwc ecosystem.
+--------------------------------------------------------------------------------------------
+
+Executing the run command on this container image.
+Usage: docker run [OPTIONS] ${VCW_REALM}/${VCW_ECOSYSTEM}.${VCW_IMAGENAME}:${VCW_TAG} [ARGUMENTS]
+
+[OPTIONS]:
+    Map a volume when extracting assets from the container image.
+	-v %cd%:/hkvb/pwd     -   Windows
+	-v $(pwd):/hkvb/pwd   -   Linux
+
+    Add the interactive flag when attaching an interactive process to the container.
+    -it
+
+[ARGUMENTS]:
+    The following switches are available:
+
+    --extract       Extract the project repository embedded in the container image to host volume folder in
+                    ${VCW_REALM}/${VCW_ECOSYSTEM}.${VCW_IMAGENAME} (internal path)
+
+    --base          Invokes the entrypoint of the base container and passes the remaining arguments to process
+
+    --container     Forces stdout and stderr to the vcwc JSON output format
+
+    --help          Help file
+
+      Forces stdout and stderr to default output format

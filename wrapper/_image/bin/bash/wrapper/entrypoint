@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+export VCW_EXECUTIONPLANE_BASEPATH=$PATH
+
+export PATH="/vcw/bin:/vcw/bin/bash:/vcw/bin/bash/executionplane:${VCW_EXECUTIONPLANE_BASEPATH}"
+export VCW_EXECUTIONPLANE_ORIGINALPATH=$PATH
+
+export PATH="/vcw/bin/bash/wrapper:${VCW_EXECUTIONPLANE_ORIGINALPATH}"
+export VCW_EXECUTIONPLANE_WRAPPERPATH=$PATH
+
+# set VCW_HOSTNAME
+if [[ -f /hostfs/etc/hostname ]]; then
+  export VCW_HOSTNAME="$(< /hostfs/etc/hostname)"
+elif [[ -d /hostfs/etc ]]; then
+  export VCW_HOSTNAME="host.docker.internal"
+fi
+if [[ "$VCW_HOSTNAME" == "" ]]; then
+  export VCW_HOSTNAME="localhost"
+fi
+
+if [[ $VCW_PREENTRYPOINT != "" ]] ; then
+  . "$VCW_PREENTRYPOINT"
+fi
+
+# Register APIs
+for f in /vcw/bin/${VCW_IMAGE}/* ;
+do
+	folder=$(basename $f)
+	if [[ -d $f && "$folder" != "internal" && "$folder" != "bash" ]] ; then
+    envName="VCW_EXECUTIONPLANE_APIEXTERNALPATH_${folder^^}"
+    export "$envName"="/vcw/bin/${VCW_IMAGE}/$folder:${VCW_EXECUTIONPLANE_ORIGINALPATH}"
+    envName="VCW_EXECUTIONPLANE_APIINTERNALPATH_${folder^^}"
+    export "$envName"="/vcw/bin/${VCW_IMAGE}/$folder:/vcw/bin/${VCW_IMAGE}/$folder/internal:/vcw/bin/${VCW_IMAGE}/internal:$VCW_EXECUTIONPLANE_ORIGINALPATH"
+	fi
+done;
+
+export VCW_EXECUTIONPLANE="${VCW_IMAGENAME}"
+
+if [[ $1 == '--executiontag' ]] ; then
+  export VCW_EXECUTIONTAG=$2
+  shift
+  shift
+fi
+
+if [[ $1 == "--keepalive"* ]] ; then
+  cycles=$(echo "$1" | cut -d':' -f 2 | cut -d' ' -f 1)
+  export VCW_EXITPOINT="KEEPALIVE:$cycles"
+  shift
+elif [[ $1 == '--nokeepalive' ]] ; then
+  export VCW_EXITPOINT=
+  shift
+fi
+
+export PS1='$(pwd)# '
+start=$SECONDS
+
+# image-wrapper status information
+timestamp=$(to-timestamp)
+printf '{ "source":"wrapper", "@timestamp":"%s", "status":"initialising", "entrypoint": "%s"}\n' "$timestamp" "'$*'"
+
+# invoke entrypoint if no arguments
+(
+export PATH=$VCW_EXECUTIONPLANE_BASEPATH
+$VCW_ENTRYPOINT "$@"
+)
+
+# emit log and image wrapper info upon termination
+if [[ "$VCW_EXITPOINT" == "KEEPALIVE"* ]] ; then
+  cycles=$(echo "$VCW_EXITPOINT" | cut -d':' -f 2)
+  let "iterations = 0$cycles"
+	timestamp=$(to-timestamp)
+	duration=$(( SECONDS - start))
+	start=$SECONDS
+  continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		keepalive=$(( SECONDS - start))
+    printf '{ "source":"wrapper", "@timestamp":"%s", "status":"exiting", "uptime-seconds":"%s", "keepalive-seconds":"%s"}\n' "$timestamp" "$duration" "$keepalive"
+		sleep 5
+    let "iterations = iterations - 1"
+    if (( iterations == 0 )) ; then
+      continue="false"
+    fi
+	done
+else
+	timestamp=$(to-timestamp)
+	duration=$(( SECONDS - start))
+  printf '{ "source":"wrapper", "@timestamp":"%s", "status":"exiting", "uptime-seconds":"%s"}\n' "$timestamp" "$duration"
+	sleep 0.25
+fi
