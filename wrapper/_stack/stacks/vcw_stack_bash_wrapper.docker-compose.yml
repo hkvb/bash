@@ -4,7 +4,7 @@ services:
 
 # START SERVICE hkvb/bash/wrapper
   bash_wrapper:
-    image: ${VCW_REGISTRY}${VCW_STACK_GLOBAL_IMAGE_NAME}:5.0.18
+    image: ${VCW_REGISTRY}hkvb/bash.wrapper:5.0.18
     environment: []
     command: ['sleep 0.5']
     volumes: []
