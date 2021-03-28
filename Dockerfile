@@ -1,5 +1,5 @@
 ARG  VCW_TAG=5.0.18
-FROM hkvb/bash:${VCW_TAG}
+FROM hkvb/bash.wrapper:${VCW_TAG}
 
 COPY ./ /vcw/repo/
 
