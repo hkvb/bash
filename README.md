@@ -17,7 +17,7 @@ Base image for bash implemented REST API clients.
 ## hkvb/bash.wrapper
 
 Base image providing core structure and containing executionplane logging library.  
-Requires a documentation update.
+Requires an update of the documentation.
 
 ## Version
 
