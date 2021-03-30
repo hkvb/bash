@@ -2,6 +2,10 @@
 
 The bash image library.
 
+## hkvb/bash
+
+Simple library image.
+
 ## hkvb/bash.api
 
 Base image implemented APIs.

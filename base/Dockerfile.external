@@ -6,7 +6,7 @@ RUN apk update && apk add curl && apk add coreutils && apk add gettext && apk ad
 LABEL co.vcweb.schema-version="1.0" \
       co.vcweb.label="hkvb/bash.base Image - External Build" \
       co.vcweb.description="Bash image with some additional library installs." \
-      co.vcweb.realm="vcwc" \
+      co.vcweb.realm="hkvb" \
       co.vcweb.library="bash" \
       co.vcweb.image="bash" \
       co.vcweb.flavor="base" \

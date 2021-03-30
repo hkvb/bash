@@ -6,7 +6,7 @@
 
 ## Default Behaviour
 
-Invoked with no commandline arguments the container invokes the preset ENTRYPOINT and the output of `stdout` and `stderr` is wrapped within a vcwc JSON record.
+Invoked with no commandline arguments the container invokes the preset ENTRYPOINT and the output of `stdout` and `stderr` is wrapped within a hkvb JSON record.
 
 If the first commandline argument doesn't match a `wrapper` flag, then it is interpreted as a bash command.
 

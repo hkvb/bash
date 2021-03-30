@@ -5,7 +5,7 @@
 # `image.wrapper` Library
 
 The library consists of 3 methods.  
-`entrypoint` and `run-image` handle the commandline at container startup and `to-JSON` implements the vcwc JSON wrapper.
+`entrypoint` and `run-image` handle the commandline at container startup and `to-JSON` implements the hkvb JSON wrapper.
 
 __`entrypoint`__  
 Prepares the different __PATH__ environment variables for the `wrapper`. It sets the appropriate PATH for the `wrapper` execution.

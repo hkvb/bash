@@ -4,7 +4,7 @@ FROM hkvb/bash.wrapper:${VCW_TAG}
 COPY ./_image /vcw/
 RUN chmod -R +x /vcw/bin
 
-ENV VCW_REALM=vcwc \
+ENV VCW_REALM=hkvb \
     VCW_LIBRARY=bash \
     VCW_IMAGE=bash \
     VCW_FLAVOR=rest \
@@ -14,7 +14,7 @@ ENV VCW_REALM=vcwc \
 LABEL co.vcweb.schema-version="1.0" \
       co.vcweb.label="hkvb/bash.rest Image" \
       co.vcweb.description="Bash image with base REST functionality." \
-      co.vcweb.realm="vcwc" \
+      co.vcweb.realm="hkvb" \
       co.vcweb.library="bash" \
       co.vcweb.image="bash" \
       co.vcweb.flavor="rest" \

@@ -1,6 +1,6 @@
 
-This is an image of the vcwc container ecosystem.
-See vcwebio/vcwc.docs.overview for more information on the vcwc ecosystem.
+This is an image of the hkvb container ecosystem.
+See vcwebio/hkvb.docs.overview for more information on the hkvb ecosystem.
 --------------------------------------------------------------------------------------------
 
 Executing the run command on this container image.
@@ -22,7 +22,7 @@ Usage: docker run [OPTIONS] ${VCW_REALM}/${VCW_ECOSYSTEM}.${VCW_IMAGENAME}:${VCW
 
     --base          Invokes the entrypoint of the base container and passes the remaining arguments to process
 
-    --container     Forces stdout and stderr to the vcwc JSON output format
+    --container     Forces stdout and stderr to the hkvb JSON output format
 
     --help          Help file
 

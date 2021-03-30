@@ -4,9 +4,9 @@
 
 # Common Folder Structure
 
-The `image.wrapper` sets a common folder structure for the vcwc images and the __git__ repository to create the image.  
+The `image.wrapper` sets a common folder structure for the hkvb images and the __git__ repository to create the image.  
 
-All vcwc specific assets are found in the `/vcwc` folder. It contains the following subfolders:
+All hkvb specific assets are found in the `/hkvb` folder. It contains the following subfolders:
 
 * `assets`: Non-executable files
 
@@ -15,7 +15,7 @@ All vcwc specific assets are found in the `/vcwc` folder. It contains the follow
 * `configs`: Configuration files for the application contained within the image.
 
 * `docker-compose`: Service definition.
-Each vcwc container image can be launches as a service.  
+Each hkvb container image can be launches as a service.  
 It can also be deployed as a ModEco repository template.
 
 * `help` containing help files for the API and its methods.

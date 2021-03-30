@@ -17,7 +17,7 @@ services:
           memory: '128m'
         reservations:
           memory: '5m'
-${VCW_STACK_BASH_WRAPPER_COMPOSE_EXTENSIONS}
+${VCW_STACK_BASH_COMPOSE_EXTENSIONS}
 # END SERVICE hkvb/bash/wrapper
 
 networks: {${VCW_STACK_GLOBAL_NETWORKS}}

@@ -9,7 +9,7 @@ RUN chmod -R +x /vcw/bin
 ENV VCW_ENTRYPOINT "bash"
 WORKDIR /vcw/pwd
 
-ENV VCW_REALM=vcwc \
+ENV VCW_REALM=hkvb \
     VCW_LIBRARY=bash \
     VCW_IMAGE=bash \
     VCW_FLAVOR=wrapper \
@@ -19,7 +19,7 @@ ENV VCW_REALM=vcwc \
 LABEL co.vcweb.schema-version="1.0" \
       co.vcweb.label="hkvb/bash.wrapper Image" \
       co.vcweb.description="Bash image with wrapper functionality." \
-      co.vcweb.realm="vcwc" \
+      co.vcweb.realm="hkvb" \
       co.vcweb.library="bash" \
       co.vcweb.image="bash" \
       co.vcweb.flavor="wrapper" \

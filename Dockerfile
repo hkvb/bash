@@ -6,7 +6,7 @@ COPY ./ /vcw/repo/
 LABEL co.vcweb.schema-version="1.0" \
       co.vcweb.label="hkvb/bash Library" \
       co.vcweb.description="Bash based image library for core vcwebco implementation." \
-      co.vcweb.realm="vcwc" \
+      co.vcweb.realm="hkvb" \
       co.vcweb.library="bash" \
       co.vcweb.image="bash" \
       co.vcweb.flavor="base" \
