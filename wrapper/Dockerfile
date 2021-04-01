@@ -9,6 +9,14 @@ RUN chmod -R +x /vcw/bin
 ENV VCW_ENTRYPOINT "bash"
 WORKDIR /vcw/pwd
 
+ENV VCW_REALM=vcwc \
+    VCW_LIBRARY=bash \
+    VCW_IMAGE=bash \
+    VCW_FLAVOR=wrapper \
+    VCW_TAG=${VCW_TAG} \
+    VCW_IMAGENAME=vcwc/bash.wrapper
+
+
 LABEL co.vcweb.schema-version="1.0" \
       co.vcweb.label="${VCW_REALM}/bash.wrapper Image" \
       co.vcweb.description="Bash image with wrapper functionality." \
