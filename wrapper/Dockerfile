@@ -9,12 +9,12 @@ RUN chmod -R +x /vcw/bin
 ENV VCW_ENTRYPOINT "bash"
 WORKDIR /vcw/pwd
 
-ENV VCW_REALM=vcwc \
+ENV VCW_REALM=${VCW_REALM} \
     VCW_LIBRARY=bash \
     VCW_IMAGE=bash \
     VCW_FLAVOR=wrapper \
     VCW_TAG=${VCW_TAG} \
-    VCW_IMAGENAME=vcwc/bash.wrapper
+    VCW_IMAGENAME=hkvb/bash.wrapper
 
 
 LABEL co.vcweb.schema-version="1.0" \
