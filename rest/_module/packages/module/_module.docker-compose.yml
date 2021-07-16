@@ -1,0 +1,26 @@
+---
+version: '3'
+services:
+
+# START SERVICE hkvb/bash/rest
+  bash_rest:
+    image: ${VCW_REGISTRY}hkvb/bash.base:5.0.18
+    environment: [${MODULE_ENVIRONMENT}]
+    command: [${MODULE_COMMAND}]
+    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_data_volume:/vcw/pwd'${MODULE_VOLUMES_MAPPINGS}]
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: ${MODULE_DEPLOY_MODE}
+      resources:
+        limits:
+          memory: '${MODULE_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${MODULE_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+      restart_policy: { condition: none }
+${MODULE_COMPOSE_EXTENSIONS}
+# END SERVICE hkvb/bash/rest
+
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_data_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
