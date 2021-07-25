@@ -2,19 +2,15 @@
 
 The bash image library.
 
-## hkvb/bash
+## hkvb/bash/api
 
-Simple library image.
+Base image for bash API implemention.
 
-## hkvb/bash.api
-
-Base image implemented APIs.
-
-## hkvb/bash.base
+## hkvb/bash/base
 
 External build of bash which install some tools, including curl and jq
 
-## hkvb/bash.rest
+## hkvb/bash/rest
 
 Base image for bash implemented REST API clients.
 

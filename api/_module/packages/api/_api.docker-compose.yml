@@ -1,0 +1,26 @@
+---
+version: '3'
+services:
+
+# START SERVICE hkvb/bash/api
+  bash_api:
+    image: ${VCW_REGISTRY}hkvb/bash.base:5.0.18
+    environment: [${API_ENVIRONMENT}]
+    command: [${API_COMMAND}]
+    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_api_volume:/vcw/bin/','${VCW_STACK_GLOBAL_STACKPREFIX}_data_volume:/vcw/pwd'${API_VOLUMES_MAPPINGS}]
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: ${API_DEPLOY_MODE}
+      resources:
+        limits:
+          memory: '${API_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${API_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+      restart_policy: { condition: none }
+${API_COMPOSE_EXTENSIONS}
+# END SERVICE hkvb/bash/api
+
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_api_volume: { external: true },${VCW_STACK_GLOBAL_STACKPREFIX}_data_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
